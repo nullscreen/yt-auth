@@ -2,6 +2,8 @@
 
 Welcome to your yt-auth! Authenticate the users with Google account.
 
+[![Build Status](https://travis-ci.org/Fullscreen/yt-auth.svg?branch=master)](https://travis-ci.org/Fullscreen/yt-auth)
+
 ## Installation
 
 Add this line to your application's Gemfile:
