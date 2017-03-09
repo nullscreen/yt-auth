@@ -1,6 +1,6 @@
 # Yt::Auth
 
-Welcome to your yt-auth! Authenticate the users with Google account.
+Welcome to yt-auth! Authenticate the users with Google account.
 
 [![Build Status](https://travis-ci.org/Fullscreen/yt-auth.svg?branch=master)](https://travis-ci.org/Fullscreen/yt-auth)
 
