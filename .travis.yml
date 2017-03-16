@@ -1,8 +1,9 @@
 sudo: false
 language: ruby
+notifications:
+  email: false
 rvm:
-- 2.3.1
-before_install: gem install bundler -v 1.14.5
-env:
-  global:
-  - secure: R6dP11toJSopMpJVrLQBl6HLGFME7pWY5Xo6uENdeZb/kUxT9OXkLo5gHFXOR3BRaTDSGsq/4Xg6j6RkKEoGdI694se9yF5A+1YgF/sUrLogRu8jgHX88kOa2SoBrQhPaMroEU3Ly+R5ednIrTt5dCVYprYKJP7SmMKHk51YA8AsV6jH4H2YCCEgZDky85wHWiOmm1ijzDtDmPfyP53kqeT5nqLn5wRTlLJ0IPEGYnZRcfRVTiNNxOWI+2nVu1L4CA5TUacQJ9233RwQbNqsvgmqTetwzvrpauGpyiVFhMT+6z/9XoewpN50D4q/imUmmuuSD0f32629KiOgHWQ6Sq+jAVXbrLV1nWooRxVupG1v0D5G7H2w+HXWQb91sUB3P1ist05v77ejpZ0Xo+zezpzwKR3rfZLDscqBZLH2oJcVBD+yIORAqd2ogBLHyZ4a5VL/NCzHmGa77QBI+H4SwNuum8x1kaFCdrcMutcZZcd3JSFHJDcMTQtT/zwylDssfGb9U/zXVsG/zQwOAostXqK+MoRmJv+zGS8Ya8iHD1qDrhVeENFtcbJS/88EBZqsq2ysXFBpzyFZZ0iPb19We18T39HzZipQ89rcr75hkCFzUd0Kp9pEqMJbHk/2gtGegYzT7yeuIFcC14aQjDe6QPGHrnfLaSwPMe5Pq9XDNLU=
+  - 2.3.1
+script:
+  - bundle exec rspec
+  - bundle exec yard stats | grep "100.00% documented"
