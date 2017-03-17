@@ -30,7 +30,8 @@ Use `Yt::Auth#url` to generate an authentication URL with a redirect URI:
 
 ## Environment Variables
 
-`YT_CLIENT_ID` should be set with your Google client ID, after registering your application at [Google Developers Console](https://console.developers.google.com).
+`YT_ACCOUNT_CLIENT_ID` should be set with your Google client ID, after registering your application at [Google Developers Console](https://console.developers.google.com).
+`YT_ACCOUNT_CLIENT_SECRET` should be set with your Google client secret, after registering your application at [Google Developers Console](https://console.developers.google.com).
 
 ## Development
 
