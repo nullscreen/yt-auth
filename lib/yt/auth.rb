@@ -1,3 +1,4 @@
+require 'yt/config'
 require 'yt/request'
 
 # An object-oriented Ruby client for YouTube.
@@ -34,7 +35,7 @@ module Yt
 
     def url_params
       {}.tap do |params|
-        params[:client_id] = ENV['YT_CLIENT_ID']
+        params[:client_id] = Yt.configuration.client_id
         params[:scope] = :email
         params[:redirect_uri] = @redirect_uri
         params[:response_type] = :code
@@ -68,8 +69,8 @@ module Yt
 
     def tokens_body
       {}.tap do |params|
-        params[:client_id] = ENV['YT_CLIENT_ID']
-        params[:client_secret] = ENV['YT_CLIENT_SECRET']
+        params[:client_id] = Yt.configuration.client_id
+        params[:client_secret] = Yt.configuration.client_secret
         params[:code] = @code
         params[:redirect_uri] = @redirect_uri
         params[:grant_type] = :authorization_code

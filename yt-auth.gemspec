@@ -4,10 +4,10 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'yt/auth/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "yt-auth"
+  spec.name          = 'yt-auth'
   spec.version       = Yt::Auth::VERSION
-  spec.authors       = ["Kang-Kyu Lee"]
-  spec.email         = ["kang-kyu.lee@fullscreen.com"]
+  spec.authors       = ['Claudio Baccigalupo', 'Kang-Kyu Lee']
+  spec.email         = ['claudio@fullscreen.net', 'kang-kyu.lee@fullscreen.net']
 
   spec.summary       = %q{a Google OAuth client}
   spec.description   = %q{yt-auth provides a very simple API to log-in with a Google account}
@@ -20,6 +20,8 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
+
+  spec.add_dependency 'yt-support', '>= 0.1'
 
   spec.add_development_dependency 'bundler', '~> 1.14'
   spec.add_development_dependency 'rspec', '~> 3.5'

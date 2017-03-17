@@ -16,7 +16,7 @@ describe 'Yt::Auth#url' do
     end
 
     it 'includes the client ID' do
-      expect(auth.url).to include "client_id=#{ENV['YT_CLIENT_ID']}"
+      expect(auth.url).to include "client_id=#{Yt.configuration.client_id}"
     end
   end
 end

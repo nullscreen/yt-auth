@@ -21,6 +21,7 @@ describe 'Yt::Auth#email' do
     let(:attrs) { {code: 'invalid'} }
     message = 'Code was already redeemed.'
 
+    it {expect{auth.email}.to raise_error Yt::Error}
     it {expect{auth.email}.to raise_error Yt::Error, message}
   end
 

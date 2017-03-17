@@ -14,7 +14,9 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = false
 end
 
-ENV['YT_CLIENT_ID'] =  ENV['YT_ACCOUNT_CLIENT_ID']
-ENV['YT_CLIENT_SECRET'] = ENV['YT_ACCOUNT_CLIENT_SECRET']
-
 require 'yt/auth'
+
+Yt.configure do |config|
+  config.client_id = ENV['YT_ACCOUNT_CLIENT_ID']
+  config.client_secret = ENV['YT_ACCOUNT_CLIENT_SECRET']
+end
