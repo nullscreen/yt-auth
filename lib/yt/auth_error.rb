@@ -1,5 +1,5 @@
 module Yt
   # A wrapper around StandardError.
-  class Error < StandardError
+  class AuthError < StandardError
   end
 end

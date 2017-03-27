@@ -1,5 +1,5 @@
 require 'yt/config'
-require 'yt/request'
+require 'yt/auth_request'
 
 # An object-oriented Ruby client for YouTube.
 # @see http://www.rubydoc.info/gems/yt/
@@ -27,7 +27,7 @@ module Yt
 
     # @return [String] the email of an authenticated Google account.
     def email
-      response = Yt::Request.new(email_params).run
+      response = AuthRequest.new(email_params).run
       response.body['email']
     end
 
@@ -51,10 +51,7 @@ module Yt
 
     # @return [Hash] the tokens of an authenticated Google account.
     def tokens
-      Yt::Request.new(tokens_params).run.body
-    rescue Yt::Error => e
-      message = JSON(e.message)['error_description']
-      raise Yt::Error, message || 'Invalid authorization code.'
+      AuthRequest.new(tokens_params).run.body
     end
 
     def tokens_params
@@ -64,6 +61,9 @@ module Yt
         params[:method] = :post
         params[:request_format] = :form
         params[:body] = tokens_body
+        params[:error_message] = ->(body) {
+          JSON(body)['error_description'] || 'Invalid authorization code.'
+        }
       end
     end
 

@@ -1,13 +1,13 @@
-require 'net/http' # for Net::HTTP.start
-require 'json' # for JSON.parse
-require 'yt/error'
+require 'net/http'
+require 'json'
+require 'yt/auth_error'
 
 module Yt
   # @private
   # A wrapper around Net::HTTP to send HTTP requests to any web API and
   # return their result or raise an error if the result is unexpected.
-  class Request
-    # Initializes a Request object.
+  class AuthRequest
+    # Initializes an AuthRequest object.
     def initialize(options = {})
       @host = options.fetch :host, 'www.googleapis.com'
       @path = options[:path]
@@ -15,19 +15,21 @@ module Yt
       @headers = options.fetch :headers, {}
       @body = options[:body]
       @request_format = options.fetch :request_format, :json
+      @error_message = options.fetch :error_message, ->(body) {"Error: #{body}"}
     end
 
     # Sends the request and returns the response.
     def run
       if response.is_a? Net::HTTPSuccess
-        response.tap{parse_response!}
+        response.tap do
+          parse_response!
+        end
       else
-        raise Yt::Error, JSON(response.body).to_json
+        raise Yt::AuthError, error_message
       end
     end
 
   private
-
 
     # @return [URI::HTTPS] the (memoized) URI of the request.
     def uri
@@ -49,7 +51,9 @@ module Yt
     # if the request body is a JSON Object, transform its keys into camel-case,
     # since this is the common format for JSON APIs.
     def set_request_body!(request)
-      request.set_form_data @body if @body
+      if @body
+        request.set_form_data @body
+      end
     end
 
     # Adds the request headers to the request in the appropriate format.
@@ -59,9 +63,10 @@ module Yt
     def set_request_headers!(request)
       if @request_format == :json
         request.initialize_http_header 'Content-Type' => 'application/json'
-        request.initialize_http_header 'Content-length' => '0'
       end
-      @headers.each{|name, value| request.add_field name, value}
+      @headers.each do |name, value|
+        request.add_field name, value
+      end
     end
 
     # Run the request and memoize the response or the server error received.
@@ -72,9 +77,15 @@ module Yt
     end
 
     # Replaces the body of the response with the parsed version of the body,
-    # according to the format specified in the Request.
+    # according to the format specified in the AuthRequest.
     def parse_response!
-      response.body = JSON response.body if response.body
+      if response.body
+        response.body = JSON response.body
+      end
+    end
+
+    def error_message
+      @error_message.call response.body
     end
   end
 end

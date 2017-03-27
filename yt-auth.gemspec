@@ -9,8 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Claudio Baccigalupo', 'Kang-Kyu Lee']
   spec.email         = ['claudio@fullscreen.net', 'kang-kyu.lee@fullscreen.net']
 
-  spec.summary       = %q{a Google OAuth client}
-  spec.description   = %q{yt-auth provides a very simple API to log-in with a Google account}
+  spec.summary       = %q{Google Authentication Ruby client}
+  spec.description   = %q{Yt::Auth makes it easy to authenticate users to any
+    web application by means of their Google account.}
   spec.homepage      = 'https://github.com/fullscreen/yt-auth'
   spec.license       = 'MIT'
 
