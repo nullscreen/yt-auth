@@ -12,7 +12,7 @@ The **source code** is available on [GitHub](https://github.com/fullscreen/yt-au
 [![Online docs](http://img.shields.io/badge/docs-✓-green.svg)](http://www.rubydoc.info/gems/yt-auth/frames)
 [![Gem Version](http://img.shields.io/gem/v/yt-auth.svg)](http://rubygems.org/gems/yt-auth)
 
-The Yt::Auth library provides two methods: `url` and `email`.
+The Yt::Auth class provides two public methods: `url` and `email`.
 
 Yt::Auth#url
 ------------
