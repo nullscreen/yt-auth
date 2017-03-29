@@ -30,10 +30,8 @@ describe 'Yt::Auth#email' do
     # NOTE: This test needs to be mocked because getting a real authorization
     # code requires a web interaction from a real user.
     before do
-      expect(auth).to receive(:tokens).and_return 'access_token' => '1234'
-      response = double 'response'
-      expect_any_instance_of(Yt::HTTPRequest).to receive(:run) { response }
-      expect(response).to receive(:body).and_return 'email' => email
+      expect(auth).to receive(:tokens).and_return 'id_token' => '1234'
+      expect(JWT).to receive(:decode).and_return [{'email' => email}]
     end
   end
 end

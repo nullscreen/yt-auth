@@ -1,7 +1,11 @@
-Yt::Auth - authenticate users with their Google account
-=======================================================
+Authenticate users with their Google account
+============================================
 
-Yt::Auth helps you write apps that need to authenticate users by means of their Google account.
+Yt::Auth lets you easily authenticate users of your website by means of
+their Google-based email address.
+
+With Yt::Auth, it is easy to limit access to your app to a few users without
+the need for them to create a username and password.
 
 The **source code** is available on [GitHub](https://github.com/fullscreen/yt-auth) and the **documentation** on [RubyDoc](http://www.rubydoc.info/gems/yt-auth/frames).
 
@@ -54,7 +58,6 @@ code = 'this-is-not-a-valid-code'
 Yt::Auth.new(redirect_uri: redirect_uri, code: code).email
  # => Yt::HTTPError: Invalid authorization code.
 ```
-
 
 How to contribute
 =================

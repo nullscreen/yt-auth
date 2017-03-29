@@ -6,6 +6,10 @@ For more information about changelogs, check
 [Keep a Changelog](http://keepachangelog.com) and
 [Vandamme](http://tech-angels.github.io/vandamme).
 
+## 0.2.1  - 2017-03-29
+
+* [ENHANCEMENT] Speed up process by fetching email with 1 HTTP request (not 2).
+
 ## 0.2.0  - 2017-03-29
 
 **How to upgrade**
