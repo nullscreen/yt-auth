@@ -1,3 +1,5 @@
+require 'jwt'
+
 require 'yt/config'
 require 'yt/http_request'
 
@@ -27,8 +29,8 @@ module Yt
 
     # @return [String] the email of an authenticated Google account.
     def email
-      response = HTTPRequest.new(email_params).run
-      response.body['email']
+      decoded_token = JWT.decode tokens['id_token'], nil, false
+      decoded_token[0]['email']
     end
 
   private
@@ -39,13 +41,6 @@ module Yt
         params[:scope] = :email
         params[:redirect_uri] = @redirect_uri
         params[:response_type] = :code
-      end
-    end
-
-    def email_params
-      {}.tap do |params|
-        params[:path] = '/oauth2/v2/userinfo'
-        params[:headers] = {Authorization: "Bearer #{tokens['access_token']}"}
       end
     end
 
