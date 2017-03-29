@@ -1,5 +1,5 @@
 require 'yt/config'
-require 'yt/auth_request'
+require 'yt/http_request'
 
 # An object-oriented Ruby client for YouTube.
 # @see http://www.rubydoc.info/gems/yt/
@@ -27,7 +27,7 @@ module Yt
 
     # @return [String] the email of an authenticated Google account.
     def email
-      response = AuthRequest.new(email_params).run
+      response = HTTPRequest.new(email_params).run
       response.body['email']
     end
 
@@ -51,7 +51,7 @@ module Yt
 
     # @return [Hash] the tokens of an authenticated Google account.
     def tokens
-      AuthRequest.new(tokens_params).run.body
+      HTTPRequest.new(tokens_params).run.body
     end
 
     def tokens_params

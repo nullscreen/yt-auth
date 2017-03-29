@@ -42,17 +42,17 @@ Yt::Auth.new(redirect_uri: redirect_uri, code: code).email
  # => "user@example.com"
 ```
 
-Yt::AuthError
+Yt::HTTPError
 -------------
 
-`Yt::AuthError` will be raised whenever something goes wrong during the
+`Yt::HTTPError` will be raised whenever something goes wrong during the
 authentication process. The message of the error will include the details:
 
 ```ruby
 redirect_uri = 'https://example.com/auth' # REPLACE WITH REAL ONE
 code = 'this-is-not-a-valid-code'
 Yt::Auth.new(redirect_uri: redirect_uri, code: code).email
- # => Yt::AuthError: Invalid authorization code.
+ # => Yt::HTTPError: Invalid authorization code.
 ```
 
 
