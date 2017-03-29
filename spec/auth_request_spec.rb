@@ -4,7 +4,8 @@ describe 'Yt::AuthRequest#run' do
   context 'given any valid request to a YouTube JSON API' do
     path = '/discovery/v1/apis/youtube/v3/rest'
     headers = {'User-Agent' => 'Yt::AuthRequest'}
-    request = Yt::AuthRequest.new path: path, headers: headers
+    params = {verbose: 1}
+    request = Yt::AuthRequest.new path: path, headers: headers, params: params
 
     it 'returns the HTTP response with the JSON-parsed body' do
       response = request.run
