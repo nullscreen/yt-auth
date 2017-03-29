@@ -6,7 +6,7 @@ describe 'Yt::Auth#email' do
 
     it 'raises an error (missing code)' do
       auth = Yt::Auth.new
-      expect{auth.email}.to raise_error Yt::AuthError, missing
+      expect{auth.email}.to raise_error Yt::HTTPError, missing
     end
   end
 
@@ -15,7 +15,7 @@ describe 'Yt::Auth#email' do
 
     it 'raises an error (invalid or already redeemed)' do
       auth = Yt::Auth.new code: rand(36**20).to_s(36)
-      expect{auth.email}.to raise_error Yt::AuthError, invalid
+      expect{auth.email}.to raise_error Yt::HTTPError, invalid
     end
   end
 
@@ -32,7 +32,7 @@ describe 'Yt::Auth#email' do
     before do
       expect(auth).to receive(:tokens).and_return 'access_token' => '1234'
       response = double 'response'
-      expect_any_instance_of(Yt::AuthRequest).to receive(:run) { response }
+      expect_any_instance_of(Yt::HTTPRequest).to receive(:run) { response }
       expect(response).to receive(:body).and_return 'email' => email
     end
   end
