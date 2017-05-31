@@ -16,7 +16,7 @@ The **source code** is available on [GitHub](https://github.com/fullscreen/yt-au
 [![Online docs](http://img.shields.io/badge/docs-✓-green.svg)](http://www.rubydoc.info/gems/yt-auth/frames)
 [![Gem Version](http://img.shields.io/gem/v/yt-auth.svg)](http://rubygems.org/gems/yt-auth)
 
-The Yt::Auth class provides two public methods: `url` and `email`.
+The Yt::Auth class provides three public methods: `url`, `email`, and `access_token`.
 
 Yt::Auth#url
 ------------
@@ -44,6 +44,18 @@ redirect_uri = 'https://example.com/auth' # REPLACE WITH REAL ONE
 code = '1234' # REPLACE WITH REAL ONE
 Yt::Auth.new(redirect_uri: redirect_uri, code: code).email
  # => "user@example.com"
+```
+
+Yt::Auth#access_token
+---------------------
+
+Similarly, with the `access_token` method, you can obtain an access token of the users:
+
+```ruby
+redirect_uri = 'https://example.com/auth' # REPLACE WITH REAL ONE
+code = '1234' # REPLACE WITH REAL ONE
+Yt::Auth.new(redirect_uri: redirect_uri, code: code).access_token
+ # => "ya29.GltbBLXt74GrwX8S_xr70aX"
 ```
 
 Yt::HTTPError
