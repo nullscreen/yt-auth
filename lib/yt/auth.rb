@@ -31,6 +31,11 @@ module Yt
       profile['email']
     end
 
+    # @return [String] the access token of an authenticated Google account.
+    def access_token
+      tokens['access_token']
+    end
+
   private
 
     def url_params
