@@ -1,6 +1,7 @@
 module Yt
   class Auth
-    # current version of gem
-    VERSION = '0.2.2'
+    # @return [String] the SemVer-compatible gem version.
+    # @see http://semver.org
+    VERSION = '0.2.3'
   end
 end

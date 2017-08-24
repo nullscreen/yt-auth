@@ -16,6 +16,7 @@ module Yt
     def initialize(options = {})
       @redirect_uri = options[:redirect_uri]
       @code = options[:code]
+      @refresh_token = options[:refresh_token]
     end
 
     # @return [String] the URL where to authenticate with a Google account.
@@ -42,6 +43,7 @@ module Yt
       {}.tap do |params|
         params[:client_id] = Yt.configuration.client_id
         params[:scope] = :email
+        params[:access_type] = :offline
         params[:redirect_uri] = @redirect_uri
         params[:response_type] = :code
       end
@@ -66,7 +68,7 @@ module Yt
         params[:request_format] = :form
         params[:body] = tokens_body
         params[:error_message] = ->(body) {
-          JSON(body)['error_description'] || 'Invalid authorization code.'
+          JSON(body)['error_description'] || token_error_message
         }
       end
     end
@@ -75,9 +77,22 @@ module Yt
       {}.tap do |params|
         params[:client_id] = Yt.configuration.client_id
         params[:client_secret] = Yt.configuration.client_secret
-        params[:code] = @code
-        params[:redirect_uri] = @redirect_uri
-        params[:grant_type] = :authorization_code
+        if @refresh_token
+          params[:refresh_token] = @refresh_token
+          params[:grant_type] = :refresh_token
+        else
+          params[:code] = @code
+          params[:redirect_uri] = @redirect_uri
+          params[:grant_type] = :authorization_code
+        end
+      end
+    end
+
+    def token_error_message
+      if @refresh_token
+        'Invalid refresh token.'
+      else
+        'Invalid authorization code.'
       end
     end
   end

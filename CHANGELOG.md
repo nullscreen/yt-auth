@@ -6,6 +6,10 @@ For more information about changelogs, check
 [Keep a Changelog](http://keepachangelog.com) and
 [Vandamme](http://tech-angels.github.io/vandamme).
 
+## 0.2.3  - 2017-08-24
+
+* [FEATURE] Add the ability to generate access token from a refresh token
+
 ## 0.2.2  - 2017-05-31
 
 * [FEATURE] Add `Auth#access_token`
