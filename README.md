@@ -16,47 +16,82 @@ The **source code** is available on [GitHub](https://github.com/fullscreen/yt-au
 [![Online docs](http://img.shields.io/badge/docs-✓-green.svg)](http://www.rubydoc.info/gems/yt-auth/frames)
 [![Gem Version](http://img.shields.io/gem/v/yt-auth.svg)](http://rubygems.org/gems/yt-auth)
 
-The Yt::Auth class provides three public methods: `url`, `email`, and `access_token`.
+Yt::Auth.url_for
+----------------
 
-Yt::Auth#url
-------------
-
-With the `url` method, you can obtain a URL where to redirect users who need to
-authenticate with their Google account in order to use your application:
+With the `url_for` class method, you can obtain a URL where to redirect users
+who need to authenticate with their Google account in order to use your
+application:
 
 ```ruby
 redirect_uri = 'https://example.com/auth' # REPLACE WITH REAL ONE
-Yt::Auth.new(redirect_uri: redirect_uri).url
+scope = %i(yt-analytics.readonly youtube)
+Yt::Auth.url_for(redirect_uri: redirect_uri, scope: scope, force: true)
  # => https://accounts.google.com/o/oauth2/auth?client_id=...&scope=email&redirect_uri=https%3A%2F%2Fexample.com%2Fauth&response_type=code
 ```
 
-Yt::Auth#email
---------------
+Yt::Auth.create
+----------------
 
 After users have authenticated with their Google account, they will be
 redirected to the `redirect_uri` you indicated, with an extra `code` query
 parameter, e.g. `https://example.com/auth?code=1234`
 
-With the `email` method, you can obtain the verified email of the users:
+With the `create` class method, you can create an instance for that
+authentication:
 
 ```ruby
 redirect_uri = 'https://example.com/auth' # REPLACE WITH REAL ONE
-code = '1234' # REPLACE WITH REAL ONE
-Yt::Auth.new(redirect_uri: redirect_uri, code: code).email
+code = 'dfwe7r9djd234ffdjf3009dfknfd98re' # REPLACE WITH REAL ONE
+auth = Yt::Auth.create(redirect_uri: redirect_uri, code: code)
+ # => #<Yt::Auth:0x007fe61d…>
+```
+
+Yt::Auth#email
+--------------
+
+Once you have an instance of `Yt::Auth`, you can obtain the verified email
+of the authenticated user:
+
+```ruby
+auth.email
  # => "user@example.com"
 ```
 
 Yt::Auth#access_token
 ---------------------
 
-Similarly, with the `access_token` method, you can obtain an access token of the users:
+Once you have an instance of `Yt::Auth`, you can also obtain the access token
+of the authenticated user:
 
 ```ruby
-redirect_uri = 'https://example.com/auth' # REPLACE WITH REAL ONE
-code = '1234' # REPLACE WITH REAL ONE
-Yt::Auth.new(redirect_uri: redirect_uri, code: code).access_token
- # => "ya29.GltbBLXt74GrwX8S_xr70aX"
+auth.access_token
+ # => "ya29.df8er8e9r89er"
 ```
+
+Yt::Auth#refresh_token
+----------------------
+
+Once you have an instance of `Yt::Auth`, you can also obtain the refresh token
+of the authenticated user:
+
+```ruby
+auth.refresh_token
+ # => "sdf7f7erre98df"
+```
+
+Yt::Auth.find_by
+----------------
+
+If you already know the refresh token of a Google account, you can obtain its
+complete authentication object:
+
+```ruby
+auth = Auth.find_by(refresh_token: "sdf7f7erre98df")
+auth.email
+ # => "user@example.com"
+```
+
 
 Yt::HTTPError
 -------------
