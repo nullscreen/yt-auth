@@ -70,6 +70,12 @@ module Yt
       tokens['refresh_token']
     end
 
+    # Placeholder method that can be invoked after a refresh token is used
+    # to generate a new access token. Applications can override this method,
+    # for instance to store the new token in a database
+    def access_token_was_refreshed
+    end
+
   private
 
     def self.url_params(options)

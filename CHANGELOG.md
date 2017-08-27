@@ -6,6 +6,10 @@ For more information about changelogs, check
 [Keep a Changelog](http://keepachangelog.com) and
 [Vandamme](http://tech-angels.github.io/vandamme).
 
+## 0.3.1  - 2017-08-26
+
+* [ENHANCEMENT] Add placeholder method to be notified when token is refreshed.
+
 ## 0.3.0  - 2017-08-25
 
 **How to upgrade**
