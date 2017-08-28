@@ -20,7 +20,7 @@ If your code uses `Yt::Auth.new(refresh_token:)` then you must use `Yt::Auth.fin
 
 * [ENHANCEMENT] Extract `Auth#url` into `Auth.url_for`
 * [ENHANCEMENT] Rename `Auth.new(code:)` into `Auth.create(code:)`
-* [ENHANCEMENT] Rename `Auth.new(refresh_token:)` into `Auth.create(refresh_token:)`
+* [ENHANCEMENT] Rename `Auth.new(refresh_token:)` into `Auth.find_by(refresh_token:)`
 * [FEATURE] Yt::Auth.url_for now accepts the scope to authenticate
 * [FEATURE] Yt::Auth.url_for now accepts an option to force re-authentication
 * [FEATURE] Add `Auth#revoke` to revoke a refresh token
