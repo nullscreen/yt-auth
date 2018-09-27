@@ -11,7 +11,7 @@ describe 'Yt::Auth.create' do
   end
 
   context 'given an invalid authorization code' do
-    invalid = 'Invalid authorization code.'
+    invalid = 'Malformed auth code.'
 
     it 'raises an error (invalid or already redeemed)' do
       auth = Yt::Auth.create code: rand(36**20).to_s(36)
