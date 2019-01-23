@@ -108,8 +108,8 @@ module Yt
 
     def tokens_params
       {}.tap do |params|
-        params[:host] = 'accounts.google.com'
-        params[:path] = '/o/oauth2/token'
+        params[:host] = 'oauth2.googleapis.com'
+        params[:path] = '/token'
         params[:method] = :post
         params[:request_format] = :form
         params[:body] = @tokens_body
@@ -119,8 +119,8 @@ module Yt
 
     def revoke_params
       {}.tap do |params|
-        params[:host] = 'accounts.google.com'
-        params[:path] = '/o/oauth2/revoke'
+        params[:host] = 'oauth2.googleapis.com'
+        params[:path] = '/revoke'
         params[:params] = {token: refresh_token || access_token}
       end
     end
